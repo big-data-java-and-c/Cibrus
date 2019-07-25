@@ -16,7 +16,7 @@ namespace Cibrus.models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int LessonId { get; set; }
-        public Date date_lesson { get; set; }
+        public DateTime date_lesson { get; set; }
         public string sign_hall { get; set; }
 
         // many to one teacher

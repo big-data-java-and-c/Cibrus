@@ -20,7 +20,8 @@ namespace Cibrus.models
         public string date_received { get; set; }
 
      // many to one student
-      public ICollection<Student> Student { get; set; }
+      public ICollection<StudentGrade> StudentGrade { get; set; }
+
      // many to one teacher
       public ICollection<Teacher> Teacher { get; set; }
      // many to one subject

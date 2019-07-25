@@ -28,7 +28,7 @@ namespace Cibrus.models
         public Grade Grade { get; set; }
 
         // one to many lesson
-       public int GradeId { get; set; }
+       public int LessonId { get; set; }
           public Lesson Lesson { get; set; }
 
         public Subject()

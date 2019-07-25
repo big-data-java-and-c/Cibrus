@@ -13,9 +13,15 @@ namespace Cibrus.Context
             : base(options)
         { }
 
-        public DbSet<User> user { get; set; }
-        public DbSet<Role> roles { get; set; }
 
+        public DbSet<Grade> grades { get; set; }
+        public DbSet<Group> groups { get; set; }
+        public DbSet<Lesson> lessons { get; set; }
+        public DbSet<Role> roles { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Subject> subjects { get; set; }
+        public DbSet<Teacher> teachers { get; set; }
+        public DbSet<User> users { get; set; }
 
     }
 }

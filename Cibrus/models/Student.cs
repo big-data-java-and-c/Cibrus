@@ -34,7 +34,7 @@ namespace Cibrus.models
         public virtual User Users { get; set; }
 
         // many to one grade
-        public ICollection<Grade> Grade { get; set; }
+        public ICollection<StudentGrade> StudentGrade { get; set; }
         
         public Student()
         {
