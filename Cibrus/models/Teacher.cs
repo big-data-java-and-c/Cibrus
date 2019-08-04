@@ -28,9 +28,9 @@ namespace Cibrus.models
         [ForeignKey("User")]
         [JsonIgnore]
         public int UserId { get; set; }
+        public User User { get; set; }
 
-        public virtual User Users { get; set; }
-
+        public ICollection<Grade> Grades { get; set; }
         public Teacher()
         {
 

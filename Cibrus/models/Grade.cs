@@ -19,15 +19,16 @@ namespace Cibrus.models
         public int value_grade { get; set; }
         public string date_received { get; set; }
 
-     // many to one student
-      public ICollection<StudentGrade> StudentGrade { get; set; }
+       
+        public int SubjectId { get; set; }
+        public Subject Subject { get; set; }
 
-     // many to one teacher
-      public ICollection<Teacher> Teacher { get; set; }
-     // many to one subject
-      public ICollection<Subject> Subject { get; set; }
-     
-    
+        public int TeacherId { get; set; }
+        public Teacher Teacher { get; set; }
+
+        public int StudentId { get; set; }
+        public Student Student { get; set; }
+
         public Grade()
         {
 

@@ -23,18 +23,17 @@ namespace Cibrus.models
         public string zip_code { get; set; }  
         public string phone_number { get; set; } 
                 
-        //  many to one group
-          public ICollection<Group> Group { get; set; }
+        public int GropuId { get; set; }
+        public Group Group { get; set; }
+
         // one to one user
         [Column("user_id")]
         [ForeignKey("User")]
         [JsonIgnore]
         public int UserId { get; set; }
+        public virtual User User { get; set; }
 
-        public virtual User Users { get; set; }
-
-        // many to one grade
-        public ICollection<StudentGrade> StudentGrade { get; set; }
+       
         
         public Student()
         {

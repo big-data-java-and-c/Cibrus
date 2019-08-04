@@ -13,15 +13,29 @@ namespace Cibrus.Context
             : base(options)
         { }
 
+    
+
+
 
         public DbSet<Grade> grades { get; set; }
         public DbSet<Group> groups { get; set; }
-        public DbSet<Lesson> lessons { get; set; }
         public DbSet<Role> roles { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> subjects { get; set; }
         public DbSet<Teacher> teachers { get; set; }
         public DbSet<User> users { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Grade>()
+                .HasOne(b => b.Teacher)
+                .WithMany(a => a.Grades)
+                .OnDelete(DeleteBehavior.Restrict);
+
+           
+        }
+
     }
+   
 }

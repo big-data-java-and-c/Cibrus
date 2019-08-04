@@ -16,9 +16,9 @@ namespace Cibrus.models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int GroupId { get; set; }
-        public int id_group { get; set; }
         public string groupName { get; set; }
 
+        public ICollection<Student> Students { get; set; }
         public Group()
         {
 

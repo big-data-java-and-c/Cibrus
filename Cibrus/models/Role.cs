@@ -27,6 +27,8 @@ namespace Cibrus.models
         [Column("role_type")]
         public string name { get; set; }
 
+        public ICollection<User> Users { get; set; }
+
         public Role()
         {
 
