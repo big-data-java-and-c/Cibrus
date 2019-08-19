@@ -22,7 +22,7 @@ namespace Cibrus.models
         public string name { get; set; }
 
         [Column("salary")]
-        private int salary { get; set; }
+        public int salary { get; set; }
 
         [Column("user_id")]
         [ForeignKey("User")]

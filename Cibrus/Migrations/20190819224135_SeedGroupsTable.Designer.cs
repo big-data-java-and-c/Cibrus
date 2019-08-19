@@ -4,14 +4,16 @@ using Cibrus.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cibrus.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20190819224135_SeedGroupsTable")]
+    partial class SeedGroupsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,23 +108,6 @@ namespace Cibrus.Migrations
                     b.HasKey("RoleId");
 
                     b.ToTable("roles");
-
-                    b.HasData(
-                        new
-                        {
-                            RoleId = 1,
-                            name = "ADMIN"
-                        },
-                        new
-                        {
-                            RoleId = 2,
-                            name = "STUDENT"
-                        },
-                        new
-                        {
-                            RoleId = 3,
-                            name = "TEACHER"
-                        });
                 });
 
             modelBuilder.Entity("Cibrus.models.Student", b =>
@@ -158,32 +143,6 @@ namespace Cibrus.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("student");
-
-                    b.HasData(
-                        new
-                        {
-                            StudentId = 1,
-                            GropuId = 1,
-                            UserId = 1,
-                            address = " szkolna 11",
-                            city = " uć ",
-                            displayName = " Wiktor",
-                            phone_number = "785772271",
-                            province = " lodzkie",
-                            zip_code = "12-345"
-                        },
-                        new
-                        {
-                            StudentId = 2,
-                            GropuId = 1,
-                            UserId = 2,
-                            address = " szkolna 11",
-                            city = " uć ",
-                            displayName = " Kamil",
-                            phone_number = "785772271",
-                            province = " lodzkie",
-                            zip_code = "12-345"
-                        });
                 });
 
             modelBuilder.Entity("Cibrus.models.Subject", b =>
@@ -200,26 +159,6 @@ namespace Cibrus.Migrations
                     b.HasKey("SubjectId");
 
                     b.ToTable("subject");
-
-                    b.HasData(
-                        new
-                        {
-                            SubjectId = 1,
-                            name = "Matematyka Dyskretna",
-                            value_ECTS = 6
-                        },
-                        new
-                        {
-                            SubjectId = 2,
-                            name = "Analiza Matematyczna",
-                            value_ECTS = 5
-                        },
-                        new
-                        {
-                            SubjectId = 3,
-                            name = "Podstawy Programowania",
-                            value_ECTS = 4
-                        });
                 });
 
             modelBuilder.Entity("Cibrus.models.Teacher", b =>
@@ -235,23 +174,11 @@ namespace Cibrus.Migrations
                     b.Property<string>("name")
                         .HasColumnName("name");
 
-                    b.Property<int>("salary")
-                        .HasColumnName("salary");
-
                     b.HasKey("id");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("teacher");
-
-                    b.HasData(
-                        new
-                        {
-                            id = 1,
-                            UserId = 3,
-                            name = "profesor",
-                            salary = 15000
-                        });
                 });
 
             modelBuilder.Entity("Cibrus.models.User", b =>
@@ -273,50 +200,6 @@ namespace Cibrus.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("user");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            RoleId = 2,
-                            email = "ekoGroszek@wp.pl",
-                            password = "12345"
-                        },
-                        new
-                        {
-                            UserId = 2,
-                            RoleId = 2,
-                            email = "xewionn@wp.pl",
-                            password = "12345"
-                        },
-                        new
-                        {
-                            UserId = 3,
-                            RoleId = 3,
-                            email = "profesor@wp.pl",
-                            password = "12345"
-                        },
-                        new
-                        {
-                            UserId = 4,
-                            RoleId = 3,
-                            email = "doktor@wp.pl",
-                            password = "12345"
-                        },
-                        new
-                        {
-                            UserId = 5,
-                            RoleId = 1,
-                            email = "admin@wp.pl",
-                            password = "12345"
-                        },
-                        new
-                        {
-                            UserId = 6,
-                            RoleId = 2,
-                            email = "student6@wp.pl",
-                            password = "12345"
-                        });
                 });
 
             modelBuilder.Entity("Cibrus.models.Grade", b =>
