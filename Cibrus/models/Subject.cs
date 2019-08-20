@@ -19,17 +19,8 @@ namespace Cibrus.models
         public string name { get; set; }
         public int value_ECTS { get; set; }
 
-        // many to many teacher
-        public ICollection<Teacher> Teacher { get; set; }
-
-        // one to many grade
-        public int GradeId { get; set; }
-        
-        public Grade Grade { get; set; }
-
-        // one to many lesson
-       public int LessonId { get; set; }
-          public Lesson Lesson { get; set; }
+        public virtual ICollection<Grade> Grades { get; set; }
+     
 
         public Subject()
         {

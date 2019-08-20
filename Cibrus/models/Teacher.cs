@@ -22,15 +22,15 @@ namespace Cibrus.models
         public string name { get; set; }
 
         [Column("salary")]
-        private int salary { get; set; }
+        public int salary { get; set; }
 
         [Column("user_id")]
         [ForeignKey("User")]
         [JsonIgnore]
         public int UserId { get; set; }
+        public User User { get; set; }
 
-        public virtual User Users { get; set; }
-
+        public ICollection<Grade> Grades { get; set; }
         public Teacher()
         {
 
