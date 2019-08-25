@@ -31,18 +31,24 @@ namespace Cibrus.Controllers
         //    @RequestMapping(method = RequestMethod.GET, path = "/student/{id}")
         // GET: api/Student/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Student>> GetStudent(int id)
+        //public async Task<ActionResult<Student>> GetStudent(int id)
+        public IActionResult GetStudent(int id)
         {
-            var student = await _context.Students.FindAsync(id);
+            //var student = await _context.Students.FindAsync(id);
+
+            var student = _context.Students
+                .Include(g => g.User)
+                .Include(u => u.Group)
+                .Where(b => b.StudentId.Equals(id))
+                .FirstOrDefault();
 
             if (student == null)
             {
                 return NotFound();
             }
 
-            return student;
+            return Ok(student);
         }
-
         // PUT: api/Student/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutStudent(int id, Student student)

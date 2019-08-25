@@ -18,6 +18,7 @@ namespace Cibrus.models
         public int GroupId { get; set; }
         public string groupName { get; set; }
 
+        [JsonIgnore]
         public ICollection<Student> Students { get; set; }
         public Group()
         {

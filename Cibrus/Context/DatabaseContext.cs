@@ -78,7 +78,7 @@ namespace Cibrus.Context
                     zip_code = "12-345",
                     phone_number = "785772271",
                     UserId = 1,
-                    GropuId = 1
+                    GropuId = 1,
                 },
                 new Student
                 {
