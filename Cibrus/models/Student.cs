@@ -21,15 +21,15 @@ namespace Cibrus.models
         public string city { get; set; } 
         public string province { get; set; } 
         public string zip_code { get; set; }  
-        public string phone_number { get; set; } 
-                
+        public string phone_number { get; set; }
+
+        [ForeignKey("Group")]
         public int GropuId { get; set; }
         public Group Group { get; set; }
 
         // one to one user
         [Column("user_id")]
         [ForeignKey("User")]
-        [JsonIgnore]
         public int UserId { get; set; }
         public virtual User User { get; set; }
 

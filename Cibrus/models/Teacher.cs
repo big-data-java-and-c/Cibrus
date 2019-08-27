@@ -30,6 +30,7 @@ namespace Cibrus.models
         public int UserId { get; set; }
         public User User { get; set; }
 
+        [JsonIgnore]
         public ICollection<Grade> Grades { get; set; }
         public Teacher()
         {

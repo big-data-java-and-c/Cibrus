@@ -13,7 +13,7 @@ namespace Cibrus.Context
             : base(options)
         { }
 
-    
+
 
 
 
@@ -40,12 +40,12 @@ namespace Cibrus.Context
                 new Group { GroupId = 4, groupName = "IO4" },
                 new Group { GroupId = 5, groupName = "IO5" },
                 new Group { GroupId = 6, groupName = "IO6" }
-                ) ;
+                );
 
             modelBuilder.Entity<Role>().HasData(
-                new Role {RoleId = 1, name = "ADMIN" },
-                new Role {RoleId = 2, name = "STUDENT" },
-                new Role {RoleId = 3, name = "TEACHER" }
+                new Role { RoleId = 1, name = "ADMIN" },
+                new Role { RoleId = 2, name = "STUDENT" },
+                new Role { RoleId = 3, name = "TEACHER" }
                 );
 
             modelBuilder.Entity<User>().HasData(
@@ -54,7 +54,7 @@ namespace Cibrus.Context
                 new User { UserId = 3, email = "profesor@wp.pl", password = "12345", RoleId = 3 },
                 new User { UserId = 4, email = "doktor@wp.pl", password = "12345", RoleId = 3 },
                 new User { UserId = 5, email = "admin@wp.pl", password = "12345", RoleId = 1 },
-                new User { UserId = 6, email = "student6@wp.pl", password = "12345", RoleId = 2}
+                new User { UserId = 6, email = "student6@wp.pl", password = "12345", RoleId = 2 }
                 );
 
             modelBuilder.Entity<Subject>().HasData(
@@ -70,7 +70,7 @@ namespace Cibrus.Context
             modelBuilder.Entity<Student>().HasData(
                 new Student
                 {
-                    StudentId = 1, 
+                    StudentId = 1,
                     displayName = " Wiktor",
                     address = " szkolna 11",
                     city = " uć ",
@@ -78,7 +78,7 @@ namespace Cibrus.Context
                     zip_code = "12-345",
                     phone_number = "785772271",
                     UserId = 1,
-                    GropuId = 1
+                    GropuId = 1,
                 },
                 new Student
                 {
@@ -91,10 +91,109 @@ namespace Cibrus.Context
                     phone_number = "785772271",
                     UserId = 2,
                     GropuId = 1
+                },
+                new Student
+                {
+                    StudentId = 3,
+                    displayName = " Rafał",
+                    address = " szkolna 11",
+                    city = " uć ",
+                    province = " lodzkie",
+                    zip_code = "12-345",
+                    phone_number = "785772271",
+                    UserId = 3,
+                    GropuId = 2
+                },
+                new Student
+                {
+                    StudentId = 4,
+                    displayName = " Robert",
+                    address = " robertowa 11",
+                    city = " uć ",
+                    province = " lodzkie",
+                    zip_code = "12-345",
+                    phone_number = "733333271",
+                    UserId = 4,
+                    GropuId = 2
                 }
+            );
+
+            modelBuilder.Entity<Grade>().HasData(
+                new Grade
+                 {
+                    GradeId = 1,
+                    value_grade = 5,
+                    date_received = "12/08/2019",
+                    StudentId = 1,
+                    TeacherId = 1,
+                    SubjectId = 1
+                },
+                 new Grade
+                 {
+                     GradeId = 2,
+                     value_grade = 5,
+                     date_received = "12/08/2019",
+                     StudentId = 1,
+                     TeacherId = 1,
+                     SubjectId = 1
+                 },
+                 new Grade
+                 {
+                     GradeId = 3,
+                     value_grade = 5,
+                     date_received = "12/08/2019",
+                     StudentId = 1,
+                     TeacherId = 1,
+                     SubjectId = 1
+                 },
+                 new Grade
+                 {
+                     GradeId = 4,
+                     value_grade = 5,
+                     date_received = "12/08/2019",
+                     StudentId = 1,
+                     TeacherId = 1,
+                     SubjectId = 1
+                 },
+                 new Grade
+                 {
+                     GradeId = 5,
+                     value_grade = 5,
+                     date_received = "12/08/2019",
+                     StudentId = 2,
+                     TeacherId = 1,
+                     SubjectId = 1
+                 },
+                 new Grade
+                 {
+                     GradeId = 6,
+                     value_grade = 5,
+                     date_received = "12/08/2019",
+                     StudentId = 2,
+                     TeacherId = 1,
+                     SubjectId = 1
+                 },
+                 new Grade
+                 {
+                     GradeId = 7,
+                     value_grade = 5,
+                     date_received = "12/08/2019",
+                     StudentId = 4,
+                     TeacherId = 1,
+                     SubjectId = 1
+                 },
+                 new Grade
+                 {
+                     GradeId = 8,
+                     value_grade = 5,
+                     date_received = "12/08/2019",
+                     StudentId = 4,
+                     TeacherId = 1,
+                     SubjectId = 1
+                 }
                 );
         }
 
     }
-   
+
 }

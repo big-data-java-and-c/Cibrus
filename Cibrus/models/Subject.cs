@@ -19,6 +19,7 @@ namespace Cibrus.models
         public string name { get; set; }
         public int value_ECTS { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Grade> Grades { get; set; }
      
 
