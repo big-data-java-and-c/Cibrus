@@ -12,12 +12,13 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Logging;
 
 namespace Cibrus.Services
 {
     public class UserService : IUserService
     {
-        private const string KEY = "likeJwtKey";
+        private const string KEY = "likeJwtKeylikeJwtKey";
         private DatabaseContext databaseContext;
 
         public UserService(DatabaseContext _databaseContext)
@@ -56,6 +57,7 @@ namespace Cibrus.Services
                 //value to add on registry for student
                 Student newStudent = new Student();
                 newStudent.UserId = newUser.UserId;
+                newStudent.GropuId = 7;
                 databaseContext.Students.Add(newStudent);
                 databaseContext.SaveChanges();
             }
@@ -106,6 +108,7 @@ namespace Cibrus.Services
                 signingCredentials: credentials
              );
 
+            IdentityModelEventSource.ShowPII = true;
             var JWTResponse = new Response();
             JWTResponse.response.token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
             JWTResponse.userId = user.UserId;

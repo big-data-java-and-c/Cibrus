@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cibrus.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class finalMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -81,18 +81,17 @@ namespace Cibrus.Migrations
                     zip_code = table.Column<string>(nullable: true),
                     phone_number = table.Column<string>(nullable: true),
                     GropuId = table.Column<int>(nullable: false),
-                    GroupId = table.Column<int>(nullable: true),
                     user_id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_student", x => x.id);
                     table.ForeignKey(
-                        name: "FK_student_group_GroupId",
-                        column: x => x.GroupId,
+                        name: "FK_student_group_GropuId",
+                        column: x => x.GropuId,
                         principalTable: "group",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_student_user_user_id",
                         column: x => x.user_id,
@@ -108,6 +107,7 @@ namespace Cibrus.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     name = table.Column<string>(nullable: true),
+                    salary = table.Column<int>(nullable: false),
                     user_id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -156,6 +156,84 @@ namespace Cibrus.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "group",
+                columns: new[] { "id", "groupName" },
+                values: new object[,]
+                {
+                    { 1, "IO1" },
+                    { 2, "IO2" },
+                    { 3, "IO3" },
+                    { 4, "IO4" },
+                    { 5, "IO5" },
+                    { 6, "IO6" },
+                    { 7, "NewUserGroup" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "roles",
+                columns: new[] { "id", "role_type" },
+                values: new object[,]
+                {
+                    { 1, "ADMIN" },
+                    { 2, "STUDENT" },
+                    { 3, "TEACHER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "subject",
+                columns: new[] { "id", "name", "value_ECTS" },
+                values: new object[,]
+                {
+                    { 1, "Matematyka Dyskretna", 6 },
+                    { 2, "Analiza Matematyczna", 5 },
+                    { 3, "Podstawy Programowania", 4 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "user",
+                columns: new[] { "id", "roles_id", "email", "password" },
+                values: new object[,]
+                {
+                    { 5, 1, "admin@wp.pl", "12345" },
+                    { 1, 2, "ekoGroszek@wp.pl", "12345" },
+                    { 2, 2, "xewionn@wp.pl", "12345" },
+                    { 6, 2, "student6@wp.pl", "12345" },
+                    { 3, 3, "profesor@wp.pl", "12345" },
+                    { 4, 3, "doktor@wp.pl", "12345" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "student",
+                columns: new[] { "id", "GropuId", "user_id", "address", "city", "displayName", "phone_number", "province", "zip_code" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, " szkolna 11", " uć ", " Wiktor", "785772271", " lodzkie", "12-345" },
+                    { 2, 1, 2, " szkolna 11", " uć ", " Kamil", "785772271", " lodzkie", "12-345" },
+                    { 3, 2, 3, " szkolna 11", " uć ", " Rafał", "785772271", " lodzkie", "12-345" },
+                    { 4, 2, 4, " robertowa 11", " uć ", " Robert", "733333271", " lodzkie", "12-345" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "teacher",
+                columns: new[] { "id", "user_id", "name", "salary" },
+                values: new object[] { 1, 3, "profesor", 15000 });
+
+            migrationBuilder.InsertData(
+                table: "grade",
+                columns: new[] { "id", "StudentId", "SubjectId", "TeacherId", "date_received", "value_grade" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 1, "12/08/2019", 5 },
+                    { 2, 1, 1, 1, "12/08/2019", 5 },
+                    { 3, 1, 1, 1, "12/08/2019", 5 },
+                    { 4, 1, 1, 1, "12/08/2019", 5 },
+                    { 5, 2, 1, 1, "12/08/2019", 5 },
+                    { 6, 2, 1, 1, "12/08/2019", 5 },
+                    { 7, 4, 1, 1, "12/08/2019", 5 },
+                    { 8, 4, 1, 1, "12/08/2019", 5 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_grade_StudentId",
                 table: "grade",
@@ -172,9 +250,9 @@ namespace Cibrus.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_student_GroupId",
+                name: "IX_student_GropuId",
                 table: "student",
-                column: "GroupId");
+                column: "GropuId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_student_user_id",

@@ -39,7 +39,9 @@ namespace Cibrus.Context
                 new Group { GroupId = 3, groupName = "IO3" },
                 new Group { GroupId = 4, groupName = "IO4" },
                 new Group { GroupId = 5, groupName = "IO5" },
-                new Group { GroupId = 6, groupName = "IO6" }
+                new Group { GroupId = 6, groupName = "IO6" },
+                new Group { GroupId = 7, groupName = "NewUserGroup" }
+
                 );
 
             modelBuilder.Entity<Role>().HasData(

@@ -21,9 +21,9 @@ namespace Cibrus.models
 
         [Column("roles_id")]
         [ForeignKey("Role")]
-        [JsonIgnore]
         public int RoleId { get; set; }
 
+        [JsonIgnore]
         public virtual Role Roles { get; set; }
 
         public User()
