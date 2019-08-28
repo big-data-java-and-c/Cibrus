@@ -163,6 +163,11 @@ namespace Cibrus.Migrations
                         {
                             GroupId = 6,
                             groupName = "IO6"
+                        },
+                        new
+                        {
+                            GroupId = 7,
+                            groupName = "NewUserGroup"
                         });
                 });
 
