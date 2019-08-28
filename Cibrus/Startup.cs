@@ -14,6 +14,12 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Cibrus.Context;
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
+using Cibrus.Services;
+
 namespace Cibrus
 {
     public class Startup
@@ -34,6 +40,35 @@ namespace Cibrus
                 services.AddDbContext<DatabaseContext>
                 (options => options.UseSqlServer(connection));
 
+            //////
+              services.AddCors();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+          //  services.AddDbContext<DatabaseContext>(options =>
+            //    options.UseLazyLoadingProxies().UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IUserService, UserService>();
+
+            var secret = Encoding.ASCII.GetBytes("likeJwtKey");
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(secret),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
+            services.AddScoped<IUserService, UserService>();
 
         }
 
