@@ -57,7 +57,7 @@ namespace Cibrus.Services
                 //value to add on registry for student
                 Student newStudent = new Student();
                 newStudent.UserId = newUser.UserId;
-                newStudent.GropuId = 7;
+                newStudent.GroupId = 1;
                 databaseContext.Students.Add(newStudent);
                 databaseContext.SaveChanges();
             }

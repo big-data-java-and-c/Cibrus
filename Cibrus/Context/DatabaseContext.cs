@@ -80,7 +80,7 @@ namespace Cibrus.Context
                     zip_code = "12-345",
                     phone_number = "785772271",
                     UserId = 1,
-                    GropuId = 1,
+                    GroupId = 1,
                 },
                 new Student
                 {
@@ -92,7 +92,7 @@ namespace Cibrus.Context
                     zip_code = "12-345",
                     phone_number = "785772271",
                     UserId = 2,
-                    GropuId = 1
+                    GroupId = 1
                 },
                 new Student
                 {
@@ -104,7 +104,7 @@ namespace Cibrus.Context
                     zip_code = "12-345",
                     phone_number = "785772271",
                     UserId = 3,
-                    GropuId = 2
+                    GroupId = 2
                 },
                 new Student
                 {
@@ -116,7 +116,7 @@ namespace Cibrus.Context
                     zip_code = "12-345",
                     phone_number = "733333271",
                     UserId = 4,
-                    GropuId = 2
+                    GroupId = 2
                 }
             );
 

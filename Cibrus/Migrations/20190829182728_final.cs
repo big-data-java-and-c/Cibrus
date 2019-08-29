@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cibrus.Migrations
 {
-    public partial class finalMigration : Migration
+    public partial class final : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -80,15 +80,15 @@ namespace Cibrus.Migrations
                     province = table.Column<string>(nullable: true),
                     zip_code = table.Column<string>(nullable: true),
                     phone_number = table.Column<string>(nullable: true),
-                    GropuId = table.Column<int>(nullable: false),
+                    GroupId = table.Column<int>(nullable: false),
                     user_id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_student", x => x.id);
                     table.ForeignKey(
-                        name: "FK_student_group_GropuId",
-                        column: x => x.GropuId,
+                        name: "FK_student_group_GroupId",
+                        column: x => x.GroupId,
                         principalTable: "group",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -205,7 +205,7 @@ namespace Cibrus.Migrations
 
             migrationBuilder.InsertData(
                 table: "student",
-                columns: new[] { "id", "GropuId", "user_id", "address", "city", "displayName", "phone_number", "province", "zip_code" },
+                columns: new[] { "id", "GroupId", "user_id", "address", "city", "displayName", "phone_number", "province", "zip_code" },
                 values: new object[,]
                 {
                     { 1, 1, 1, " szkolna 11", " uć ", " Wiktor", "785772271", " lodzkie", "12-345" },
@@ -250,9 +250,9 @@ namespace Cibrus.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_student_GropuId",
+                name: "IX_student_GroupId",
                 table: "student",
-                column: "GropuId");
+                column: "GroupId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_student_user_id",

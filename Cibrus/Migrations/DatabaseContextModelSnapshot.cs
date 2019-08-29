@@ -14,7 +14,7 @@ namespace Cibrus.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -210,7 +210,7 @@ namespace Cibrus.Migrations
                         .HasColumnName("id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("GropuId");
+                    b.Property<int>("GroupId");
 
                     b.Property<int>("UserId")
                         .HasColumnName("user_id");
@@ -229,7 +229,7 @@ namespace Cibrus.Migrations
 
                     b.HasKey("StudentId");
 
-                    b.HasIndex("GropuId");
+                    b.HasIndex("GroupId");
 
                     b.HasIndex("UserId");
 
@@ -239,7 +239,7 @@ namespace Cibrus.Migrations
                         new
                         {
                             StudentId = 1,
-                            GropuId = 1,
+                            GroupId = 1,
                             UserId = 1,
                             address = " szkolna 11",
                             city = " uć ",
@@ -251,7 +251,7 @@ namespace Cibrus.Migrations
                         new
                         {
                             StudentId = 2,
-                            GropuId = 1,
+                            GroupId = 1,
                             UserId = 2,
                             address = " szkolna 11",
                             city = " uć ",
@@ -263,7 +263,7 @@ namespace Cibrus.Migrations
                         new
                         {
                             StudentId = 3,
-                            GropuId = 2,
+                            GroupId = 2,
                             UserId = 3,
                             address = " szkolna 11",
                             city = " uć ",
@@ -275,7 +275,7 @@ namespace Cibrus.Migrations
                         new
                         {
                             StudentId = 4,
-                            GropuId = 2,
+                            GroupId = 2,
                             UserId = 4,
                             address = " robertowa 11",
                             city = " uć ",
@@ -441,7 +441,7 @@ namespace Cibrus.Migrations
                 {
                     b.HasOne("Cibrus.models.Group", "Group")
                         .WithMany("Students")
-                        .HasForeignKey("GropuId")
+                        .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Cibrus.models.User", "User")

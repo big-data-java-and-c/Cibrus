@@ -24,7 +24,7 @@ namespace Cibrus.models
         public string phone_number { get; set; }
 
         [ForeignKey("Group")]
-        public int GropuId { get; set; }
+        public int GroupId { get; set; }
         public Group Group { get; set; }
 
         // one to one user
