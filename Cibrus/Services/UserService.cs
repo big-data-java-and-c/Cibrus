@@ -43,11 +43,11 @@ namespace Cibrus.Services
 
             if (userForm.role.Equals("STUDENT"))
             {
-                newUser.RoleId = 1;
+                newUser.RoleId = 2;
             }
             if (userForm.role.Equals("TEACHER"))
             {
-                newUser.RoleId = 2;
+                newUser.RoleId = 3;
             }
             databaseContext.users.Add(newUser);
             databaseContext.SaveChanges();
