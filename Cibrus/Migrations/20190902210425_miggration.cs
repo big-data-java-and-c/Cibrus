@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cibrus.Migrations
 {
-    public partial class final : Migration
+    public partial class miggration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

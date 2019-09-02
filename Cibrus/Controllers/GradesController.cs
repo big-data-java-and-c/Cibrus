@@ -25,8 +25,9 @@ namespace Cibrus.Controllers
         {
             var grades = _context.grades
                 .Include(g => g.Subject)
-                .Include(g => g.Teacher)
-                .Include(g => g.Student)
+                .Include(g => g.Teacher.User)
+                .Include(g => g.Student.Group)
+                .Include(g => g.Student.User)
                 .Where(b => b.StudentId.Equals(id));
 
             if (grades == null)

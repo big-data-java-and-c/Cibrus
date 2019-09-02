@@ -28,6 +28,19 @@ namespace Cibrus.Controllers
             return await _context.Students.ToListAsync();
         }
 
+        [HttpGet("group/{id}")]
+        public IActionResult GetStudentsByGroupId(int id)
+        {
+            var students = _context.Students
+                .Where(b => b.GroupId.Equals(id)); ;
+
+            if (students == null)
+            {
+                return BadRequest(new { message = "not found" });
+            }
+            return Ok(students);
+        }
+
         //    @RequestMapping(method = RequestMethod.GET, path = "/student/{id}")
         // GET: api/Student/5
         [HttpGet("{id}")]
