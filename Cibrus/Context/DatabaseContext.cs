@@ -50,13 +50,13 @@ namespace Cibrus.Context
                 new Role { RoleId = 3, name = "TEACHER" }
                 );
 
-            modelBuilder.Entity<User>().HasData(
-                new User { UserId = 1, email = "ekoGroszek@wp.pl", password = "12345", RoleId = 2 },
-                new User { UserId = 2, email = "xewionn@wp.pl", password = "12345", RoleId = 2 },
-                new User { UserId = 3, email = "profesor@wp.pl", password = "12345", RoleId = 3 },
-                new User { UserId = 4, email = "doktor@wp.pl", password = "12345", RoleId = 3 },
-                new User { UserId = 5, email = "admin@wp.pl", password = "12345", RoleId = 1 },
-                new User { UserId = 6, email = "student6@wp.pl", password = "12345", RoleId = 2 }
+            modelBuilder.Entity<User>().HasData(                    //password = 12345678
+                new User { UserId = 1, email = "ekoGroszek@wp.pl", password = "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0=", RoleId = 2 },
+                new User { UserId = 2, email = "xewionn@wp.pl", password = "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0=", RoleId = 2 },
+                new User { UserId = 3, email = "profesor@wp.pl", password = "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0=", RoleId = 3 },
+                new User { UserId = 4, email = "doktor@wp.pl", password = "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0=", RoleId = 3 },
+                new User { UserId = 5, email = "admin@wp.pl", password = "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0=", RoleId = 1 },
+                new User { UserId = 6, email = "student6@wp.pl", password = "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0=", RoleId = 2 }
                 );
 
             modelBuilder.Entity<Subject>().HasData(
@@ -190,6 +190,15 @@ namespace Cibrus.Context
                      value_grade = 5,
                      date_received = "12/08/2019",
                      StudentId = 4,
+                     TeacherId = 1,
+                     SubjectId = 1
+                 },
+                 new Grade
+                 {
+                     GradeId = 9,
+                     value_grade = 5,
+                     date_received = "12/08/2019",
+                     StudentId = 1,
                      TeacherId = 1,
                      SubjectId = 1
                  }

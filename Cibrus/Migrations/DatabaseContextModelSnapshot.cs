@@ -14,7 +14,7 @@ namespace Cibrus.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -113,6 +113,15 @@ namespace Cibrus.Migrations
                         {
                             GradeId = 8,
                             StudentId = 4,
+                            SubjectId = 1,
+                            TeacherId = 1,
+                            date_received = "12/08/2019",
+                            value_grade = 5
+                        },
+                        new
+                        {
+                            GradeId = 9,
+                            StudentId = 1,
                             SubjectId = 1,
                             TeacherId = 1,
                             date_received = "12/08/2019",

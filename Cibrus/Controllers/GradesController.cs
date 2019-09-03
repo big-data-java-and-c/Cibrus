@@ -37,15 +37,17 @@ namespace Cibrus.Controllers
             return Ok(grades);
         }
 
-        [HttpGet("subject/{subject_id}/student/{student_id}")]
-        public IActionResult getgetGradesBySubjaectIdAndStudentId(int subject_id, int student_id)
+        [HttpGet("grades/{subject_id}/student/{student_id}")]
+        public IActionResult getGradesBySubjaectIdAndStudentId(int subject_id, int student_id)
         {
+
             var grades = _context.grades
-                .Include(g => g.Subject)
-                .Include(g => g.Teacher)
-                .Include(g => g.Student)
-                .Where(b => b.SubjectId.Equals(subject_id))
-                .Where(b => b.StudentId.Equals(student_id));
+           //.Include(g => g.Subject)
+           .Where(c => c.SubjectId.Equals(subject_id))
+          // .Include(g => g.Teacher.User)
+          // .Include(g => g.Student.Group)
+           //.Include(g => g.Student.User)
+           .Where(b => b.StudentId.Equals(student_id));
 
             if (grades == null)
             {

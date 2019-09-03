@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cibrus.Migrations
 {
-    public partial class miggration : Migration
+    public partial class inital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -230,6 +230,7 @@ namespace Cibrus.Migrations
                     { 4, 1, 1, 1, "12/08/2019", 5 },
                     { 5, 2, 1, 1, "12/08/2019", 5 },
                     { 6, 2, 1, 1, "12/08/2019", 5 },
+                    { 9, 1, 1, 1, "12/08/2019", 5 },
                     { 7, 4, 1, 1, "12/08/2019", 5 },
                     { 8, 4, 1, 1, "12/08/2019", 5 }
                 });
