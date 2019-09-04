@@ -58,7 +58,7 @@ namespace Cibrus.Controllers
             return Ok(grades);
         }
 
-        [HttpDelete("delete /{grade_id}")]
+        [HttpDelete("delete/{grade_id}")]
         public IActionResult deleteGradeById(int grade_id)
         {
             var grade = _context.grades
