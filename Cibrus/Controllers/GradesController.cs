@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cibrus.Context;
+using Cibrus.models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,7 @@ namespace Cibrus.Controllers
                 .Include(g => g.Student.Group)
                 .Include(g => g.Student.User)
                 .Where(b => b.StudentId.Equals(id));
-
+          
             if (grades == null)
             {
                 return BadRequest(new { message = "not found" });
@@ -48,6 +49,7 @@ namespace Cibrus.Controllers
           // .Include(g => g.Student.Group)
            //.Include(g => g.Student.User)
            .Where(b => b.StudentId.Equals(student_id));
+
 
             if (grades == null)
             {
