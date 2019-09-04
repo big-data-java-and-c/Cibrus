@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cibrus.Context;
 using Cibrus.models;
+using Cibrus.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +16,12 @@ namespace Cibrus.Controllers
     public class GradesController : ControllerBase
     {
         private readonly DatabaseContext _context;
+        private IUserService userService;
 
-        public GradesController(DatabaseContext context)
+        public GradesController(DatabaseContext context, IUserService _userService)
         {
            _context = context;
+            userService = _userService;
         }
 
         [HttpGet("all/{id}")]
@@ -75,5 +78,29 @@ namespace Cibrus.Controllers
             return Ok();
         }
 
+
+        //to do add grade   url:http://localhost:8081/api/grade/add"
+ 
+        [HttpPost("add")]
+        public IActionResult register([FromBody] Grade gradeToSave)
+        {
+            //gradeToSave.Teacher = userService.getTeacherByID(gradeToSave.TeacherId);
+            Student st = new Student();
+            st = (Student)_context.Students.Where(a => a.StudentId.Equals(gradeToSave.StudentId)).First();
+
+            gradeToSave.Student = (Student)_context.Students.Where(a => a.StudentId.Equals(gradeToSave.StudentId)).First();
+            if (gradeToSave != null)
+            {
+                 
+
+                _context.grades.Add(new Grade());
+                _context.SaveChanges();
+ 
+                return Ok(gradeToSave); 
+            }
+            else { return BadRequest(new { message = " nie dodano uzytkownika" }); }
+        }
+         
+      
     }
 }
