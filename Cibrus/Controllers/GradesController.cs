@@ -48,9 +48,9 @@ namespace Cibrus.Controllers
             var grades = _context.grades
            //.Include(g => g.Subject)
            .Where(c => c.SubjectId.Equals(subject_id))
-          // .Include(g => g.Teacher.User)
-          // .Include(g => g.Student.Group)
-           //.Include(g => g.Student.User)
+           //.Include(g => g.Teacher.User)
+           //.Include(g => g.Student.Group)
+           //.Include(g => g.Student.user)
            .Where(b => b.StudentId.Equals(student_id));
 
 
@@ -87,20 +87,23 @@ namespace Cibrus.Controllers
 
       // public Subject Subject { get; set; }
         Subject sub = new Subject();
-            sub = (Subject)_context.subjects.Where(s => s.SubjectId.Equals(gradeToSave.SubjectId)).First();
+            sub = (Subject)_context.subjects.Where(s => s.SubjectId.Equals(gradeToSave.SubjectId)).FirstOrDefault();
    //     public Teacher Teacher { get; set; }
         Teacher ch = new Teacher();
-             gradeToSave.TeacherId = _context.teachers.Where(abc => abc.UserId.Equals(gradeToSave.TeacherId)).First().id;
+            ch =(Teacher)_context.teachers
+                .Where(t => t.UserId.Equals(gradeToSave.TeacherId)).FirstOrDefault();
+                //.Where(t => t.id.Equals(1)).FirstOrDefault();
+             //gradeToSave.TeacherId = _context.teachers.Where(abc => abc.UserId.Equals(gradeToSave.TeacherId)).FirstOrDefault().id;
             //int techID = _context.teachers.Where(abc => abc.UserId.Equals(gradeToSave.TeacherId)).First().id;
             //int tech2ID = userService.getTeacherByID(gradeToSave.TeacherId).id;
            // Teacher tech3ID = _context.teachers                .Where(second => second.UserId.Equals(gradeToSave.TeacherId))                .FirstOrDefault();
-            ch = (Teacher)_context.teachers.Where(c => c.id.Equals(gradeToSave.TeacherId)).First();
-            ch.User = (User)_context.users.Where(u => u.UserId.Equals(ch.UserId)).First();
+            //ch = (Teacher)_context.teachers.Where(c => c.id.Equals(gradeToSave.TeacherId)).First();
+            //ch.User = (User)_context.users.Where(u => u.UserId.Equals(ch.UserId)).First();
        // public Student Student { get; set; }
         Student st = new Student();
-        st = (Student) _context.Students.Where(a => a.StudentId.Equals(gradeToSave.StudentId)).First();
-            st.Group = (Group)_context.groups.Where(g => g.GroupId.Equals(st.GroupId)).First();
-            st.User = (User)_context.users.Where(u => u.UserId.Equals(st.UserId)).First();
+        st = (Student) _context.Students.Where(a => a.StudentId.Equals(gradeToSave.StudentId)).FirstOrDefault();
+            //st.Group = (Group)_context.groups.Where(g => g.GroupId.Equals(st.GroupId)).First();
+            //st.User = (User)_context.users.Where(u => u.UserId.Equals(st.UserId)).First();
             //gradeToSave.Teacher = userService.getTeacherByID(gradeToSave.TeacherId);
 
             gradeToSave.Subject = sub;
