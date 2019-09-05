@@ -52,7 +52,7 @@ namespace Cibrus.Services
             databaseContext.users.Add(newUser);
             databaseContext.SaveChanges();
 
-            if (newUser.RoleId == 1)
+            if (newUser.RoleId == 2)
             {
                 //value to add on registry for student
                 Student newStudent = new Student();
@@ -62,11 +62,13 @@ namespace Cibrus.Services
                 databaseContext.SaveChanges();
             }
 
-            if (newUser.RoleId == 2)
+            if (newUser.RoleId == 3)
             {
                 //value to add on registry for teacher
                 Teacher teacher = new Teacher();
                 teacher.UserId = newUser.UserId;
+                // new 
+                teacher.User = newUser;//databaseContext.users.Where(u => u.Equals(teacher.UserId)).First();
                 databaseContext.teachers.Add(teacher);
                 databaseContext.SaveChanges();
             }

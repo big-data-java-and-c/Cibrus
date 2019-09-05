@@ -84,16 +84,34 @@ namespace Cibrus.Controllers
         [HttpPost("add")]
         public IActionResult register([FromBody] Grade gradeToSave)
         {
-            //gradeToSave.Teacher = userService.getTeacherByID(gradeToSave.TeacherId);
-            Student st = new Student();
-            st = (Student)_context.Students.Where(a => a.StudentId.Equals(gradeToSave.StudentId)).First();
 
-            gradeToSave.Student = (Student)_context.Students.Where(a => a.StudentId.Equals(gradeToSave.StudentId)).First();
+      // public Subject Subject { get; set; }
+        Subject sub = new Subject();
+            sub = (Subject)_context.subjects.Where(s => s.SubjectId.Equals(gradeToSave.SubjectId)).First();
+   //     public Teacher Teacher { get; set; }
+        Teacher ch = new Teacher();
+             gradeToSave.TeacherId = _context.teachers.Where(abc => abc.UserId.Equals(gradeToSave.TeacherId)).First().id;
+            //int techID = _context.teachers.Where(abc => abc.UserId.Equals(gradeToSave.TeacherId)).First().id;
+            //int tech2ID = userService.getTeacherByID(gradeToSave.TeacherId).id;
+           // Teacher tech3ID = _context.teachers                .Where(second => second.UserId.Equals(gradeToSave.TeacherId))                .FirstOrDefault();
+            ch = (Teacher)_context.teachers.Where(c => c.id.Equals(gradeToSave.TeacherId)).First();
+            ch.User = (User)_context.users.Where(u => u.UserId.Equals(ch.UserId)).First();
+       // public Student Student { get; set; }
+        Student st = new Student();
+        st = (Student) _context.Students.Where(a => a.StudentId.Equals(gradeToSave.StudentId)).First();
+            st.Group = (Group)_context.groups.Where(g => g.GroupId.Equals(st.GroupId)).First();
+            st.User = (User)_context.users.Where(u => u.UserId.Equals(st.UserId)).First();
+            //gradeToSave.Teacher = userService.getTeacherByID(gradeToSave.TeacherId);
+
+            gradeToSave.Subject = sub;
+            gradeToSave.Teacher = ch;
+            gradeToSave.Student = st;
+
             if (gradeToSave != null)
             {
                  
 
-                _context.grades.Add(new Grade());
+                _context.grades.Add(gradeToSave);
                 _context.SaveChanges();
  
                 return Ok(gradeToSave); 
