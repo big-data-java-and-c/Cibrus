@@ -44,14 +44,14 @@ namespace Cibrus.Controllers
         [HttpGet("grades/{subject_id}/student/{student_id}")]
         public IActionResult getGradesBySubjaectIdAndStudentId(int subject_id, int student_id)
         {
-
+            int asd = _context.Students.Where(s => s.UserId.Equals(student_id)).First().StudentId;
             var grades = _context.grades
            //.Include(g => g.Subject)
            .Where(c => c.SubjectId.Equals(subject_id))
           // .Include(g => g.Teacher.User)
           // .Include(g => g.Student.Group)
            //.Include(g => g.Student.User)
-           .Where(b => b.StudentId.Equals(student_id));
+           .Where(b => b.StudentId.Equals(asd));
 
 
             if (grades == null)
