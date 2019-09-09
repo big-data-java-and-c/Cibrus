@@ -20,7 +20,7 @@ namespace Cibrus.Controllers
 
         public GradesController(DatabaseContext context, IUserService _userService)
         {
-           _context = context;
+            _context = context;
             userService = _userService;
         }
 
@@ -33,7 +33,7 @@ namespace Cibrus.Controllers
                 .Include(g => g.Student.Group)
                 .Include(g => g.Student.User)
                 .Where(b => b.StudentId.Equals(id));
-          
+
             if (grades == null)
             {
                 return BadRequest(new { message = "not found" });
@@ -44,22 +44,58 @@ namespace Cibrus.Controllers
         [HttpGet("grades/{subject_id}/student/{student_id}")]
         public IActionResult getGradesBySubjaectIdAndStudentId(int subject_id, int student_id)
         {
-            int asd = _context.Students.Where(s => s.UserId.Equals(student_id)).First().StudentId;
-            var grades = _context.grades
+            try
+            {// z frontu dostajemy USER_id, chcemy na podstawie tego user_id do asd pobrac student_ID
+                int asd = _context.Students.Where(s => s.UserId.Equals(student_id)).FirstOrDefault().StudentId;
+                var grades = _context.grades
            //.Include(g => g.Subject)
            .Where(c => c.SubjectId.Equals(subject_id))
-          // .Include(g => g.Teacher.User)
-          // .Include(g => g.Student.Group)
+           // .Include(g => g.Teacher.User)
+           // .Include(g => g.Student.Group)
            //.Include(g => g.Student.User)
            .Where(b => b.StudentId.Equals(asd));
 
 
-            if (grades == null)
+                if (grades == null)
+                {
+                    throw new Exception();
+                }
+                return Ok(grades);
+            }
+            catch (Exception e)
             {
                 return BadRequest(new { message = "not found" });
             }
-            return Ok(grades);
+
         }
+        // widok teacher, dodklanie to co wyzej ale dostajemy student_id, wiec nie musimy go szukac
+        [HttpGet("grades/{subject_id}/studentTeacher/{student_id}")]
+        public IActionResult getGradesBySubjaectIdAndStudentIdTeacherView(int subject_id, int student_id)
+        {
+            try
+            {
+                var grades = _context.grades
+            //.Include(g => g.Subject)
+            .Where(c => c.SubjectId.Equals(subject_id))
+            // .Include(g => g.Teacher.User)
+            // .Include(g => g.Student.Group)
+            //.Include(g => g.Student.User)
+            .Where(b => b.StudentId.Equals(student_id));
+
+
+                if (grades == null)
+                {
+                    throw new Exception();
+                }
+                return Ok(grades);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = "not found" });
+            }
+
+        }
+
 
         [HttpDelete("delete/{grade_id}")]
         public IActionResult deleteGradeById(int grade_id)
@@ -80,25 +116,25 @@ namespace Cibrus.Controllers
 
 
         //to do add grade   url:http://localhost:8081/api/grade/add"
- 
+
         [HttpPost("add")]
         public IActionResult register([FromBody] Grade gradeToSave)
         {
 
-      // public Subject Subject { get; set; }
-        Subject sub = new Subject();
+            // public Subject Subject { get; set; }
+            Subject sub = new Subject();
             sub = (Subject)_context.subjects.Where(s => s.SubjectId.Equals(gradeToSave.SubjectId)).First();
-   //     public Teacher Teacher { get; set; }
-        Teacher ch = new Teacher();
-             gradeToSave.TeacherId = _context.teachers.Where(abc => abc.UserId.Equals(gradeToSave.TeacherId)).First().id;
+            //     public Teacher Teacher { get; set; }
+            Teacher ch = new Teacher();
+            gradeToSave.TeacherId = _context.teachers.Where(abc => abc.UserId.Equals(gradeToSave.TeacherId)).First().id;
             //int techID = _context.teachers.Where(abc => abc.UserId.Equals(gradeToSave.TeacherId)).First().id;
             //int tech2ID = userService.getTeacherByID(gradeToSave.TeacherId).id;
-           // Teacher tech3ID = _context.teachers                .Where(second => second.UserId.Equals(gradeToSave.TeacherId))                .FirstOrDefault();
+            // Teacher tech3ID = _context.teachers                .Where(second => second.UserId.Equals(gradeToSave.TeacherId))                .FirstOrDefault();
             ch = (Teacher)_context.teachers.Where(c => c.id.Equals(gradeToSave.TeacherId)).First();
             ch.User = (User)_context.users.Where(u => u.UserId.Equals(ch.UserId)).First();
-       // public Student Student { get; set; }
-        Student st = new Student();
-        st = (Student) _context.Students.Where(a => a.StudentId.Equals(gradeToSave.StudentId)).First();
+            // public Student Student { get; set; }
+            Student st = new Student();
+            st = (Student)_context.Students.Where(a => a.StudentId.Equals(gradeToSave.StudentId)).First();
             st.Group = (Group)_context.groups.Where(g => g.GroupId.Equals(st.GroupId)).First();
             st.User = (User)_context.users.Where(u => u.UserId.Equals(st.UserId)).First();
             //gradeToSave.Teacher = userService.getTeacherByID(gradeToSave.TeacherId);
@@ -109,16 +145,16 @@ namespace Cibrus.Controllers
 
             if (gradeToSave != null)
             {
-                 
+
 
                 _context.grades.Add(gradeToSave);
                 _context.SaveChanges();
- 
-                return Ok(gradeToSave); 
+
+                return Ok(gradeToSave);
             }
             else { return BadRequest(new { message = " nie dodano uzytkownika" }); }
         }
-         
-      
+
+
     }
 }

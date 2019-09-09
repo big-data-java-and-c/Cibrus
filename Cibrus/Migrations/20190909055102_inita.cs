@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cibrus.Migrations
 {
-    public partial class inital : Migration
+    public partial class inita : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -195,12 +195,12 @@ namespace Cibrus.Migrations
                 columns: new[] { "id", "roles_id", "email", "password" },
                 values: new object[,]
                 {
-                    { 5, 1, "admin@wp.pl", "12345" },
-                    { 1, 2, "ekoGroszek@wp.pl", "12345" },
-                    { 2, 2, "xewionn@wp.pl", "12345" },
-                    { 6, 2, "student6@wp.pl", "12345" },
-                    { 3, 3, "profesor@wp.pl", "12345" },
-                    { 4, 3, "doktor@wp.pl", "12345" }
+                    { 5, 1, "admin@wp.pl", "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0=" },
+                    { 1, 2, "ekoGroszek@wp.pl", "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0=" },
+                    { 2, 2, "xewionn@wp.pl", "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0=" },
+                    { 6, 2, "student6@wp.pl", "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0=" },
+                    { 3, 3, "profesor@wp.pl", "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0=" },
+                    { 4, 3, "doktor@wp.pl", "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0=" }
                 });
 
             migrationBuilder.InsertData(

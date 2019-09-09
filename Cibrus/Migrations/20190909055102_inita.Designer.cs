@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cibrus.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20190903205558_inital")]
-    partial class inital
+    [Migration("20190909055102_inita")]
+    partial class inita
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -391,42 +391,42 @@ namespace Cibrus.Migrations
                             UserId = 1,
                             RoleId = 2,
                             email = "ekoGroszek@wp.pl",
-                            password = "12345"
+                            password = "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0="
                         },
                         new
                         {
                             UserId = 2,
                             RoleId = 2,
                             email = "xewionn@wp.pl",
-                            password = "12345"
+                            password = "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0="
                         },
                         new
                         {
                             UserId = 3,
                             RoleId = 3,
                             email = "profesor@wp.pl",
-                            password = "12345"
+                            password = "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0="
                         },
                         new
                         {
                             UserId = 4,
                             RoleId = 3,
                             email = "doktor@wp.pl",
-                            password = "12345"
+                            password = "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0="
                         },
                         new
                         {
                             UserId = 5,
                             RoleId = 1,
                             email = "admin@wp.pl",
-                            password = "12345"
+                            password = "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0="
                         },
                         new
                         {
                             UserId = 6,
                             RoleId = 2,
                             email = "student6@wp.pl",
-                            password = "12345"
+                            password = "kndJaVXsrxzrYoIXkkEmI3aEEGfvxogy+KxCvf/YXP0="
                         });
                 });
 
