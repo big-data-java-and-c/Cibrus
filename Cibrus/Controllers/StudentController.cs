@@ -62,14 +62,60 @@ namespace Cibrus.Controllers
 
             return Ok(student);
         }
-        // PUT: api/Student/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutStudent(int id, Student student)
+        /// <summary>
+        /// ///
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        // studentidbyuserid
+        [HttpGet("studentidbyuserid/{userId}")]
+        public IActionResult getStudentIdByUserId(int userId)
         {
-            if (id != student.StudentId)
-            {
-                return BadRequest();
-            }
+            int studentId = _context.Students
+                 .Where(b => b.UserId.Equals(userId))
+                 .FirstOrDefault()
+                 .StudentId;
+
+            return Ok(studentId);
+        }
+
+        // studentbystudentid
+        [HttpGet("studentbystudentid/{studentId}")]
+        public IActionResult getStudentByStudentId(int studentId)
+        {
+            var student = _context.Students
+                 .Where(b => b.StudentId.Equals(studentId))
+                 .FirstOrDefault();
+
+            return Ok(student);
+        }
+
+        // studentbyuserid
+        [HttpGet("studentbyuserid/{userId}")]
+        public IActionResult getStudentByUserId(int userId)
+        {
+            int studentId = _context.Students
+                    .Where(b => b.UserId.Equals(userId))
+                    .FirstOrDefault()
+                    .StudentId;
+
+            var student = _context.Students
+                 .Where(b => b.StudentId.Equals(studentId))
+                 .FirstOrDefault();
+
+            return Ok(student);
+        }
+        /// <summary>
+        /// ////////////////////
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="student"></param>
+        /// <returns></returns>
+        // PUT: api/Student/5
+        [HttpPut("add")]
+        public async Task<IActionResult> PutStudent(Student student)
+        {
+            
 
             _context.Entry(student).State = EntityState.Modified;
 
@@ -79,7 +125,7 @@ namespace Cibrus.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StudentExists(id))
+                if (!StudentExists(student.StudentId))
                 {
                     return NotFound();
                 }
@@ -117,6 +163,8 @@ namespace Cibrus.Controllers
 
             return student;
         }
+
+
 
 
         // @GetMapping("/student/group/{id}")
