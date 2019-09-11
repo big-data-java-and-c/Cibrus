@@ -148,6 +148,26 @@ namespace Cibrus.Controllers
             return CreatedAtAction("GetStudent", new { id = student.StudentId }, student);
         }
 
+
+        [HttpPost("{id}/setGroup/{selectedValue}")]
+        public async Task<ActionResult<Student>> UpdateStudetnGroup(int id, int selectedValue )
+        {
+            Student student = _context.Students
+                  .Where(b => b.StudentId.Equals(id))
+                  .FirstOrDefault();
+            Group group = _context.groups
+                  .Where(b => b.GroupId.Equals(selectedValue))
+                  .FirstOrDefault();
+
+            student.Group = group;
+            _context.Students.Update(student);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetStudent", new { id = student.StudentId }, student);
+        }
+
+
+
         // DELETE: api/Student/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Student>> DeleteStudent(int id)
